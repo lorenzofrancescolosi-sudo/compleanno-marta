@@ -1,20 +1,49 @@
-const btn = document.getElementById('confetti-btn');
+const btn = document.getElementById('surprise-btn');
+const overlay = document.getElementById('surprise-overlay');
+const imgLarge = document.getElementById('surprise-img-large');
+const audio = document.getElementById('birthday-audio'); // Seleziona l'audio
+
+
 
 btn.addEventListener('click', () => {
+    // --- PARTE AUDIO ---
+    audio.currentTime = 0; // Ricomincia dall'inizio
+    audio.play();
+
+    // Ferma l'audio esattamente a 41 secondi
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0; 
+    }, 41000); // 41.000 millisecondi = 41 secondi
+
+    // --- PARTE VISIVA ---
     confetti({
         particleCount: 150,
-        spread: 70,
+        spread: 80,
         origin: { y: 0.6 },
-        colors: ['#ff00de', '#ffbd00', '#00ff0a', '#ffffff']
+        colors: ['#03a9f4', '#ff4081', '#ffffff', '#ffd54f']
     });
-});
 
-// Opzionale: lancia i coriandoli all'apertura
-window.onload = () => {
+    overlay.classList.remove('overlay-hidden');
+    overlay.classList.add('overlay-visible');
+    imgLarge.classList.remove('animate-appear-rotate', 'animate-fade-out');
+    
+    void imgLarge.offsetWidth; 
+
+    // L'immagine appare e ruota (durata gestita nel CSS)
+    imgLarge.classList.add('animate-appear-rotate');
+
+    // --- LOGICA DEI 41 SECONDI ---
+    // Avviamo la dissolvenza dell'immagine a 40 secondi, 
+    // così ci mette 1 secondo a svanire e il processo totale finisce a 41.
+    
     setTimeout(() => {
-        confetti({
-            particleCount: 100,
-            spread: 160,
-        });
-    }, 500);
-};
+        imgLarge.classList.add('animate-fade-out');
+    }, 40000); // 40.000 ms = 40 secondi
+
+    // A 41 secondi tondi (41.000 ms) nascondiamo del tutto la schermata
+    setTimeout(() => {
+        overlay.classList.remove('overlay-visible');
+        overlay.classList.add('overlay-hidden');
+    }, 41000); 
+});
