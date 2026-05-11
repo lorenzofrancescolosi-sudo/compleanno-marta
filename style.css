@@ -75,7 +75,7 @@ button:hover {
 }
 
 #static-gift-img {
-    width: 500px;
+    width: 400px;
     height: auto;
     /* Opzionale: un leggero effetto oscillante per renderlo giocoso */
     animation: swing 3s ease-in-out infinite;
