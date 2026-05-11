@@ -75,7 +75,7 @@ button {
 }
 
 #static-gift-img {
-    width: 80%; /* Cambiato da 500px fisso a 80% del contenitore */
+    width: 100%; /* Cambiato da 500px fisso a 80% del contenitore */
     max-width: 250px; /* Dimensione massima per non farlo diventare enorme su PC */
     height: auto;
     animation: swing 3s ease-in-out infinite;
