@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auguri Marla! 🥳</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Audio puntato alla cartella song -->
+    <audio id="birthday-audio">
+        <source src="song/canzone.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Overlay con immagine puntata alla cartella images -->
+    <div id="surprise-overlay" class="overlay-hidden">
+        <div class="surprise-image-wrapper">
+            <img src="images/sorpresa.png" id="surprise-img-large" alt="Sorpresa per Marta">
+        </div>
+    </div>
+
+    <div class="card">
+        <h1 class="title">Buon Compleanno Marla! 🎂</h1>
+        <div class="age-badge">20</div>
+        <p class="subtitle">Perra sei pronta per la sorpresa?</p>
+        
+        <button id="surprise-btn">Clicca qui! ✨</button>
+
+        <!-- Immagine fissa puntata alla cartella images -->
+        <div class="fixed-image-container">
+            <img src="images/regalo.png" id="static-gift-img" alt="Regalo">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

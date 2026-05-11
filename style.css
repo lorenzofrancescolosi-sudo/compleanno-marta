@@ -1,0 +1,158 @@
+/* --- Stili Generali (Tono Giocoso e Azzurro) --- */
+body {
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); /* Sfondo azzurro sfumato e pastello */
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden; /* Impedisce lo scorrimento durante la sorpresa */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border: 8px solid #fff;
+    max-width: 450px;
+    z-index: 10; /* Sopra lo sfondo, sotto la sorpresa overlay */
+}
+
+.title {
+    font-family: 'Fredoka One', cursive;
+    color: #0288d1;
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+}
+
+.age-badge {
+    background-color: #ff4081; /* Un tocco di rosa per il 21 */
+    color: white;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 auto 15px;
+    box-shadow: 0 5px 10px rgba(255, 64, 129, 0.3);
+}
+
+.subtitle {
+    color: #01579b;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+/* --- Pulsante --- */
+button {
+    background-color: #03a9f4;
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-family: 'Fredoka One', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(3, 169, 244, 0.4);
+}
+
+button:hover {
+    transform: scale(1.1) rotate(-3deg);
+    background-color: #0288d1;
+}
+
+/* --- Immagine Fissa Sempre Presente --- */
+.fixed-image-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#static-gift-img {
+    width: 500px;
+    height: auto;
+    /* Opzionale: un leggero effetto oscillante per renderlo giocoso */
+    animation: swing 3s ease-in-out infinite;
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* --- SORPRESA GRANDE E CENTRATA (Overlay) --- */
+#surprise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(2, 136, 209, 0.85); /* Sfondo azzurro coprente semi-trasparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Sopra a tutto */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Classi per mostrare/nascondere l'overlay con JS */
+.overlay-visible {
+    opacity: 1 !important;
+    display: flex !important;
+}
+
+.overlay-hidden {
+    display: none !important;
+}
+
+.surprise-image-wrapper {
+    /* Rende l'immagine grande, ma reattiva */
+    width: 80%; 
+    max-width: 600px;
+    perspective: 1000px; /* Per un effetto 3D durante la rotazione */
+}
+
+#surprise-img-large {
+    width: 125%;
+    height: auto;
+    object-fit: contain; /* Mantiene le proporzioni */
+    border-radius: 20px; /* Immagine tonda */
+    border: 15px solid #fff; /* Cornice bianca spessa e festosa */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    
+    /* Stato iniziale per le animazioni */
+    transform: scale(0) rotate(0deg); 
+    opacity: 1;
+}
+
+/* --- Animazioni richieste per JS --- */
+
+/* 1. Compare e Ruota (2s) */
+.animate-appear-rotate {
+    animation: appearRotate 1s ease-out forwards;
+}
+
+@keyframes appearRotate {
+    0% { transform: scale(0) rotate(0deg); }
+    30% { transform: scale(1.1) rotate(180deg); } /* Effetto rimbalzo */
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+/* 2. Sta Ferma (per 5s) - Gestito da JS con delay */
+
+/* 3. Si Dissolve (1s) */
+.animate-fade-out {
+    animation: fadeOutSurprise 1s ease-in forwards;
+}
+
+@keyframes fadeOutSurprise {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
