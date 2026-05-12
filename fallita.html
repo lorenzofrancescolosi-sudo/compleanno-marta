@@ -39,10 +39,19 @@
         .img-cavallo {
             margin-top: 25px;
             width: 100%; /* Forza l'immagine a occupare tutto lo spazio disponibile */
-            height: auto;
+            height: 40vh; /* Più alta su mobile */
+            min-height: 250px;
+            object-fit: cover; /* Evita che si deformi tagliando un po' i bordi se necessario */
+            object-position: center;
             border-radius: 15px;
             border: 3px solid #03a9f4;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        @media (min-width: 768px) {
+            .img-cavallo {
+                height: auto;
+                max-height: 400px;
+            }
         }
         .mobile-hint {
             color: #81d4fa;
