@@ -52,14 +52,7 @@ body {
     padding: 0 10px;
 }
 
-.audio-hint {
-    color: #0277bd;
-    font-size: 0.9rem;
-    margin-top: -15px;
-    margin-bottom: 15px;
-    font-style: italic;
-    opacity: 0.8;
-}
+
 
 /* --- Pulsante --- */
 button {
