@@ -195,3 +195,14 @@ button {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
 }
+
+.site-footer a.footer-link {
+    color: #81d4fa; /* Azzurro chiaro per contrastare lo sfondo scuro */
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.site-footer a.footer-link:hover {
+    color: #ff4081; /* Rosa quando ci passi sopra col mouse */
+}
