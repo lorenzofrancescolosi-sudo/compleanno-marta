@@ -3,7 +3,20 @@ const overlay = document.getElementById('surprise-overlay');
 const imgLarge = document.getElementById('surprise-img-large');
 const audio = document.getElementById('birthday-audio'); // Seleziona l'audio
 
+// --- LOGICA ALTERNANZA IMMAGINI REGALO ---
+const giftImages = document.querySelectorAll('.gift-img');
+let currentGiftIndex = 0;
 
+setInterval(() => {
+    // Rimuovi active dall'immagine corrente per farla svanire
+    giftImages[currentGiftIndex].classList.remove('active');
+    
+    // Passa alla successiva
+    currentGiftIndex = (currentGiftIndex + 1) % giftImages.length;
+    
+    // Aggiungi active alla nuova per farla apparire
+    giftImages[currentGiftIndex].classList.add('active');
+}, 4500); // Cambia immagine ogni 4.5 secondi
 
 btn.addEventListener('click', () => {
     // --- PARTE AUDIO ---

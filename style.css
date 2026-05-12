@@ -26,7 +26,12 @@ body {
 
 .title {
     font-family: 'Fredoka One', cursive;
-    color: #0288d1;
+    color: #ffffff;
+    text-shadow: 
+        0 0 2px #ffffff,
+        0 0 5px #ff4081,
+        0 0 10px #ff4081,
+        0 0 20px #ff4081;
     font-size: 2rem; /* Ridotto da 2.8rem per mobile */
     margin-bottom: 10px;
     line-height: 1.2;
@@ -88,6 +93,11 @@ button {
     max-width: 250px; /* Dimensione massima per non farlo diventare enorme su PC */
     height: auto;
     animation: swing 3s ease-in-out infinite;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.gift-changing {
+    opacity: 0 !important;
 }
 
 /* --- SORPRESA (Overlay) --- */
