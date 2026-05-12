@@ -176,3 +176,22 @@ button {
     0% { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(0.8); }
 }
+
+/* --- Footer --- */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(1, 87, 155, 0.85); /* Blu scuro in trasparenza */
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 0.85rem;
+    z-index: 20;
+    backdrop-filter: blur(4px); /* Aggiunge un tocco di classe alla trasparenza */
+}
+.site-footer p {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
