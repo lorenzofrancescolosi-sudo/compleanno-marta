@@ -7,39 +7,93 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500&display=swap" rel="stylesheet">
     <style>
+        body {
+            /* Sovrascrive lo sfondo chiaro di style.css solo per questa pagina */
+            background: linear-gradient(135deg, #0a192f 0%, #020c1b 100%);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer; /* Fa capire che si può cliccare ovunque */
+        }
         .fallita-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem 2rem;
+            background: rgba(13, 37, 73, 0.85); /* Blu scuro traslucido */
+            padding: 2rem 1.5rem; /* Adattato per mobile */
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            border: 4px solid #ff4081;
-            max-width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(3, 169, 244, 0.4);
+            border: 2px solid #03a9f4; /* Bordo azzurro neon */
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
         }
         .fallita-text {
             font-family: 'Fredoka One', cursive;
-            color: #ff4081;
+            color: #e0f7fa; /* Celeste chiarissimo */
+            text-shadow: 0 0 15px rgba(3, 169, 244, 0.8);
             font-size: 2.2rem;
             margin: 0;
             line-height: 1.3;
         }
+        .img-cavallo {
+            margin-top: 25px;
+            width: 100%; /* Forza l'immagine a occupare tutto lo spazio disponibile */
+            height: auto;
+            border-radius: 15px;
+            border: 3px solid #03a9f4;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .mobile-hint {
+            color: #81d4fa;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            margin-bottom: 0;
+            opacity: 0.8;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
-    <audio id="goofy-audio" autoplay>
+    <audio id="goofy-audio" autoplay loop>
         <source src="song/goofy-ahh-laugh-meme.mp3" type="audio/mpeg">
     </audio>
     <div class="fallita-card">
         <p class="fallita-text">cosa clicchi sul mio nome fallita</p>
-        <img src="images/cavallo.png" alt="Cavallo" style="margin-top: 20px; max-width: 100%; height: auto; border-radius: 15px; border: 3px solid #ff4081;">
+        <img src="images/cavallo.png" alt="Cavallo" class="img-cavallo">
+        <p class="mobile-hint">(Tocca lo schermo se non senti l'audio)</p>
     </div>
     <script>
-        window.onload = function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById("goofy-audio");
-            audio.play().catch(function(error) {
-                console.log("Autoplay was prevented.", error);
-            });
-        }
+            
+            // Prova autoplay all'avvio
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(function(error) {
+                    console.log("Autoplay bloccato dal browser. Attesa interazione utente.");
+                });
+            }
+
+            // Forza l'audio al primo tocco o click (soluzione per i dispositivi mobili come iOS/Android)
+            function enableAudio() {
+                if (audio.paused) {
+                    audio.play();
+                }
+                // Rimuoviamo gli eventi una volta che l'audio è partito
+                document.removeEventListener('click', enableAudio);
+                document.removeEventListener('touchstart', enableAudio);
+                
+                // Opzionale: Nascondi il suggerimento dopo che l'audio è partito
+                document.querySelector('.mobile-hint').style.opacity = '0';
+                document.querySelector('.mobile-hint').style.transition = 'opacity 0.5s';
+            }
+
+            // Ascolta sia il click del mouse che il tocco su schermo
+            document.addEventListener('click', enableAudio);
+            document.addEventListener('touchstart', enableAudio);
+        });
     </script>
 </body>
 </html>
